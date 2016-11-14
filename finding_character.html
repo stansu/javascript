@@ -1,0 +1,2527 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<title>發現性格</title>
+		<style type="text/css">
+			body {
+				color:#000000;
+				background-color:#ffffff;}
+			table {
+				background-color:#ffffff;
+				border-style:solid;
+				border-width:0.1em;
+				border-color:#999999;}
+			th {
+				font-weight:bold;
+				background-color:#cccccc;}
+			table, td, th, input, select, textarea {
+				text-align:center;
+				padding:0.1em;}
+			input, textarea {
+				max-width:7em;}
+			textarea.prosInfo {
+				min-height:31em;}
+			textarea.consInfo {
+				min-height:25em;}
+		</style>
+		<script type="text/JavaScript">
+			function compare(a,b) {
+				if (a[1] < b[1]) {return 1}
+				if (a[1] > b[1]) {return -1}
+				return 0
+			}
+			function checkSelection(selectedOption) {
+				x=document.getElementById(selectedOption.name);
+				y=selectedOption.value;
+				countTwo=0;
+				countOne=0;
+				formCompleted=true;
+				resultA=0;
+				resultB=0;
+				resultC=0;
+				resultD=0;
+				resultE=0;
+				resultF=0;
+				resultG=0;
+				resultH=0;
+				finalResult=[["AG",0],["BF",0],["CH",0],["DE",0]];
+				resultName="";
+				for (var i=0;i<4;i++) {
+					if (x.elements[i].id != selectedOption.id && x.elements[i].value == y) {
+						x.elements[i].selectedIndex=-1
+					}
+					if (x.elements[i].value == 2) {
+						countTwo++
+					}
+					if (x.elements[i].value == 1) {
+						countOne++
+					}
+				}
+				if (countTwo == 1 && countOne == 1) {
+					x.checkList.value="OK"
+				}else {
+					x.checkList.value=""
+				}
+				for (var i=0;i<40;i++) {
+					if (document.forms[i].checkList.value == "") {
+						formCompleted=false
+					}
+				}
+				if (formCompleted == true) {
+					for (var i=0;i<40;i++) {
+						for (var j=0;j<document.forms[i].length;j++) {
+							if (document.forms[i][j].value == 2 || document.forms[i][j].value == 1) {
+								switch (document.forms[i][j].id) {
+									case "typeA":
+										resultA+=parseInt(document.forms[i][j].value)
+										break;
+									case "typeB":
+										resultB+=parseInt(document.forms[i][j].value)
+										break;
+									case "typeC":
+										resultC+=parseInt(document.forms[i][j].value)
+										break;
+									case "typeD":
+										resultD+=parseInt(document.forms[i][j].value)
+										break;
+									case "typeE":
+										resultE+=parseInt(document.forms[i][j].value)
+										break;
+									case "typeF":
+										resultF+=parseInt(document.forms[i][j].value)
+										break;
+									case "typeG":
+										resultG+=parseInt(document.forms[i][j].value)
+										break;
+									case "typeH":
+										resultH+=parseInt(document.forms[i][j].value)
+										break;
+								}
+							}
+						}
+					}
+					finalResult[0][1]=resultA+resultG;
+					finalResult[1][1]=resultB+resultF;
+					finalResult[2][1]=resultC+resultH;
+					finalResult[3][1]=resultD+resultE;
+					finalResult=finalResult.sort(compare);
+					resultName=finalResult[0][0];
+					if (finalResult[1][1] > 15) {resultName+=finalResult[1][0]}
+					for (var i=0;i<16;i++) {
+						document.forms.charType[i].disabled=true;
+					}
+					document.getElementById(resultName).disabled=false;
+					for (var i=0;i<document.forms.prosAndCons.length;i++) {
+						if (document.forms.prosAndCons[i].name == resultName) {
+							document.forms.prosAndCons[i].disabled=false
+						}
+						else {
+							document.forms.prosAndCons[i].disabled=true
+						}
+					}
+				}else {
+					for (var i=0;i<16;i++) {
+						document.forms.charType[i].disabled=true;
+					}
+					for (var i=0;i<document.forms.prosAndCons.length;i++) {
+						document.forms.prosAndCons[i].disabled=true
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>1.性格評量 一</h1>
+		<p>指南<br />
+			<ol>
+				<li>請選擇每題中兩項最接近自己的性格描述，當右側出現OK字樣時繼續作答下一題。</li>
+				<li>不要用期待值的分數(想成為這種人)來選擇，要按自己的本相據實作答。</li>
+				<li>成熟的基督徒要將自己與生俱來的性格作分類是有些困難的。因此，可按訓練前或是信主前，以及被聖靈充滿前的行為作答。</li>
+			</ol>
+		</p>
+		<table>
+			<tr>
+				<th></th>
+				<th colspan="2">A</th>
+				<th colspan="2">B</th>
+				<th colspan="2">C</th>
+				<th colspan="2">D</th>
+				<th colspan="1">已完成</th>
+			</tr>
+			<tr>
+				<form id="q01" method="get">
+					<th>1</th>
+					<td><label for="typeA">坦率</label></td>
+					<td>
+						<select size="2" name="q01" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeB">有競爭心</label></td>
+					<td>
+						<select size="2" name="q01" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeC">重禮儀</label></td>
+					<td>
+						<select size="2" name="q01" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeD">中庸</label></td>
+					<td>
+						<select size="2" name="q01" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q01" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q02" method="get">
+					<th>2</th>
+					<td><label for="typeA">有創意</label></td>
+					<td>
+						<select size="2" name="q02" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeB">有競爭心</label></td>
+					<td>
+						<select size="2" name="q02" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeC">犧牲型</label></td>
+					<td>
+						<select size="2" name="q02" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeD">順從型</label></td>
+					<td>
+						<select size="2" name="q02" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q02" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q03" method="get">
+					<th>3</th>
+					<td><label for="typeA">熱心</label></td>
+					<td>
+						<select size="2" name="q03" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeB">勇敢</label></td>
+					<td>
+						<select size="2" name="q03" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeC">分析型</label></td>
+					<td>
+						<select size="2" name="q03" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeD">沉默寡言</label></td>
+					<td>
+						<select size="2" name="q03" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q03" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q04" method="get">
+					<th>4</th>
+					<td><label for="typeA">充滿好奇</label></td>
+					<td>
+						<select size="2" name="q04" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeB">積極型</label></td>
+					<td>
+						<select size="2" name="q04" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeC">善解人意</label></td>
+					<td>
+						<select size="2" name="q04" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeD">小心</label></td>
+					<td>
+						<select size="2" name="q04" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q04" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q05" method="get">
+					<th>5</th>
+					<td><label for="typeA">很好相處</label></td>
+					<td>
+						<select size="2" name="q05" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeB">生產型</label></td>
+					<td>
+						<select size="2" name="q05" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeC">細心</label></td>
+					<td>
+						<select size="2" name="q05" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeD">有彈性</label></td>
+					<td>
+						<select size="2" name="q05" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q05" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q06" method="get">
+					<th>6</th>
+					<td><label for="typeA">愛笑</label></td>
+					<td>
+						<select size="2" name="q06" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeB">有領導力</label></td>
+					<td>
+						<select size="2" name="q06" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeC">深思熟慮</label></td>
+					<td>
+						<select size="2" name="q06" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeD">克制情緒</label></td>
+					<td>
+						<select size="2" name="q06" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q06" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q07" method="get">
+					<th>7</th>
+					<td><label for="typeA">充滿活力</label></td>
+					<td>
+						<select size="2" name="q07" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeB">果斷</label></td>
+					<td>
+						<select size="2" name="q07" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+						</select>
+					</td>
+					<td><label for="typeC">有秩序</label></td>
+					<td>
+						<select size="2" name="q07" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">有包容力</label></td>
+					<td>
+						<select size="2" name="q07" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q07" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q08" method="get">
+					<th>8</th>
+					<td><label for="typeA">衝動型</label></td>
+					<td>
+						<select size="2" name="q08" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">實際的</label></td>
+					<td>
+						<select size="2" name="q08" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">堅持固執</label></td>
+					<td>
+						<select size="2" name="q08" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">沉著冷靜</label></td>
+					<td>
+						<select size="2" name="q08" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q08" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q09" method="get">
+					<th>9</th>
+					<td><label for="typeA">熱情型</label></td>
+					<td>
+						<select size="2" name="q09" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">有責任感</label></td>
+					<td>
+						<select size="2" name="q09" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">忠誠</label></td>
+					<td>
+						<select size="2" name="q09" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">安定</label></td>
+					<td>
+						<select size="2" name="q09" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q09" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q10" method="get">
+					<th>10</th>
+					<td><label for="typeA">有說服力</label></td>
+					<td>
+						<select size="2" name="q10" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">不屈不撓</label></td>
+					<td>
+						<select size="2" name="q10" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">追求完美</label></td>
+					<td>
+						<select size="2" name="q10" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">保持平衡</label></td>
+					<td>
+						<select size="2" name="q10" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q10" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q11" method="get">
+					<th>11</th>
+					<td><label for="typeA">舞台魅力</label></td>
+					<td>
+						<select size="2" name="q11" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">有能力</label></td>
+					<td>
+						<select size="2" name="q11" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">有組織力</label></td>
+					<td>
+						<select size="2" name="q11" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">寬容</label></td>
+					<td>
+						<select size="2" name="q11" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q11" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q12" method="get">
+					<th>12</th>
+					<td><label for="typeA">隨和</label></td>
+					<td>
+						<select size="2" name="q12" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">行動家</label></td>
+					<td>
+						<select size="2" name="q12" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">喜歡音樂</label></td>
+					<td>
+						<select size="2" name="q12" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">沉默寡言</label></td>
+					<td>
+						<select size="2" name="q12" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q12" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q13" method="get">
+					<th>13</th>
+					<td><label for="typeA">能影響人</label></td>
+					<td>
+						<select size="2" name="q13" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">競爭型</label></td>
+					<td>
+						<select size="2" name="q13" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">感性敏銳</label></td>
+					<td>
+						<select size="2" name="q13" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">害羞</label></td>
+					<td>
+						<select size="2" name="q13" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q13" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q14" method="get">
+					<th>14</th>
+					<td><label for="typeA">很會表達</label></td>
+					<td>
+						<select size="2" name="q14" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">正直</label></td>
+					<td>
+						<select size="2" name="q14" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">專心</label></td>
+					<td>
+						<select size="2" name="q14" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">平穩</label></td>
+					<td>
+						<select size="2" name="q14" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q14" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q15" method="get">
+					<th>15</th>
+					<td><label for="typeA">開朗</label></td>
+					<td>
+						<select size="2" name="q15" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">有自信</label></td>
+					<td>
+						<select size="2" name="q15" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">細膩</label></td>
+					<td>
+						<select size="2" name="q15" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">善於調停</label></td>
+					<td>
+						<select size="2" name="q15" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q15" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q16" method="get">
+					<th>16</th>
+					<td><label for="typeA">熱情型</label></td>
+					<td>
+						<select size="2" name="q16" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">有決斷力</label></td>
+					<td>
+						<select size="2" name="q16" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">深謀遠慮</label></td>
+					<td>
+						<select size="2" name="q16" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">寬容</label></td>
+					<td>
+						<select size="2" name="q16" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q16" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q17" method="get">
+					<th>17</th>
+					<td><label for="typeA">誇張</label></td>
+					<td>
+						<select size="2" name="q17" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">主觀明確</label></td>
+					<td>
+						<select size="2" name="q17" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">信實</label></td>
+					<td>
+						<select size="2" name="q17" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">有組織力</label></td>
+					<td>
+						<select size="2" name="q17" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q17" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q18" method="get">
+					<th>18</th>
+					<td><label for="typeA">樂觀</label></td>
+					<td>
+						<select size="2" name="q18" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">冒險型</label></td>
+					<td>
+						<select size="2" name="q18" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">誠實</label></td>
+					<td>
+						<select size="2" name="q18" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">善於傾聽</label></td>
+					<td>
+						<select size="2" name="q18" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q18" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q19" method="get">
+					<th>19</th>
+					<td><label for="typeA">親切</label></td>
+					<td>
+						<select size="2" name="q19" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">大膽</label></td>
+					<td>
+						<select size="2" name="q19" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">照計畫做事</label></td>
+					<td>
+						<select size="2" name="q19" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">很自然的</label></td>
+					<td>
+						<select size="2" name="q19" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q19" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q20" method="get">
+					<th>20</th>
+					<td><label for="typeA">有人緣</label></td>
+					<td>
+						<select size="2" name="q20" id="typeA" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeB">意志很強</label></td>
+					<td>
+						<select size="2" name="q20" id="typeB" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeC">專注</label></td>
+					<td>
+						<select size="2" name="q20" id="typeC" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeD">謹慎</label></td>
+					<td>
+						<select size="2" name="q20" id="typeD" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q20" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+		</table>
+		<h1>2.性格評量 二</h1>
+		<p>指南<br />
+			<ol>
+				<li>請選擇每題中兩項最接近自己的性格描述，當右側出現OK字樣時繼續作答下一題。</li>
+				<li>以下的句子會表達出性格上的缺點，想想平時感覺到自己的缺點。</li>
+				<li>成熟的基督徒要將自己與生俱來的性格作分類是有些困難的。因此，可按訓練前或是信主前，以及被聖靈充滿前的行為作答。</li>
+			</ol>
+		</p>
+		<table>
+			<tr>
+				<th></th>
+				<th colspan="2">E</th>
+				<th colspan="2">F</th>
+				<th colspan="2">G</th>
+				<th colspan="2">H</th>
+				<th colspan="1">已完成</th>
+			</tr>
+			<tr>
+				<form id="q21" method="get">
+					<th>1</th>
+					<td><label for="typeE">沒有熱情</label></td>
+					<td>
+						<select size="2" name="q21" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">老練</label></td>
+					<td>
+						<select size="2" name="q21" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">變化無常</label></td>
+					<td>
+						<select size="2" name="q21" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">批判性的</label></td>
+					<td>
+						<select size="2" name="q21" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q21" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q22" method="get">
+					<th>2</th>
+					<td><label for="typeE">又慢又懶</label></td>
+					<td>
+						<select size="2" name="q22" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">工作狂</label></td>
+					<td>
+						<select size="2" name="q22" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">無法沉著</label></td>
+					<td>
+						<select size="2" name="q22" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">懷有僨怒</label></td>
+					<td>
+						<select size="2" name="q22" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q22" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q23" method="get">
+					<th>3</th>
+					<td><label for="typeE">小心膽怯</label></td>
+					<td>
+						<select size="2" name="q23" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">頑固</label></td>
+					<td>
+						<select size="2" name="q23" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">渴望被讚美</label></td>
+					<td>
+						<select size="2" name="q23" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">內向</label></td>
+					<td>
+						<select size="2" name="q23" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q23" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q24" method="get">
+					<th>4</th>
+					<td><label for="typeE">沒有確信</label></td>
+					<td>
+						<select size="2" name="q24" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">無同情心</label></td>
+					<td>
+						<select size="2" name="q24" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">隨便</label></td>
+					<td>
+						<select size="2" name="q24" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">不虛心</label></td>
+					<td>
+						<select size="2" name="q24" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q24" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q25" method="get">
+					<th>5</th>
+					<td><label for="typeE">緩慢</label></td>
+					<td>
+						<select size="2" name="q25" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">性情急</label></td>
+					<td>
+						<select size="2" name="q25" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">反覆述說</label></td>
+					<td>
+						<select size="2" name="q25" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">懷疑</label></td>
+					<td>
+						<select size="2" name="q25" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q25" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q26" method="get">
+					<th>6</th>
+					<td><label for="typeE">沒有目標</label></td>
+					<td>
+						<select size="2" name="q26" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">喜歡爭論</label></td>
+					<td>
+						<select size="2" name="q26" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">健忘</label></td>
+					<td>
+						<select size="2" name="q26" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">自我隔離</label></td>
+					<td>
+						<select size="2" name="q26" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q26" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q27" method="get">
+					<th>7</th>
+					<td><label for="typeE">不建立關係</label></td>
+					<td>
+						<select size="2" name="q27" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">無禮</label></td>
+					<td>
+						<select size="2" name="q27" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">多話</label></td>
+					<td>
+						<select size="2" name="q27" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">神經質</label></td>
+					<td>
+						<select size="2" name="q27" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q27" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q28" method="get">
+					<th>8</th>
+					<td><label for="typeE">神情木然</label></td>
+					<td>
+						<select size="2" name="q28" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">控制</label></td>
+					<td>
+						<select size="2" name="q28" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">無秩序</label></td>
+					<td>
+						<select size="2" name="q28" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">沮喪</label></td>
+					<td>
+						<select size="2" name="q28" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q28" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q29" method="get">
+					<th>9</th>
+					<td><label for="typeE">不果斷</label></td>
+					<td>
+						<select size="2" name="q29" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">無法寬待</label></td>
+					<td>
+						<select size="2" name="q29" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">誇張</label></td>
+					<td>
+						<select size="2" name="q29" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">惡意</label></td>
+					<td>
+						<select size="2" name="q29" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q29" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q30" method="get">
+					<th>10</th>
+					<td><label for="typeE">會妥協</label></td>
+					<td>
+						<select size="2" name="q30" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">驕傲</label></td>
+					<td>
+						<select size="2" name="q30" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">無法預測</label></td>
+					<td>
+						<select size="2" name="q30" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">沒有人緣</label></td>
+					<td>
+						<select size="2" name="q30" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q30" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q31" method="get">
+					<th>11</th>
+					<td><label for="typeE">懶惰</label></td>
+					<td>
+						<select size="2" name="q31" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">有主張</label></td>
+					<td>
+						<select size="2" name="q31" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">虛張聲勢</label></td>
+					<td>
+						<select size="2" name="q31" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">退縮</label></td>
+					<td>
+						<select size="2" name="q31" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q31" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q32" method="get">
+					<th>12</th>
+					<td><label for="typeE">漠不關心</label></td>
+					<td>
+						<select size="2" name="q32" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">能調解</label></td>
+					<td>
+						<select size="2" name="q32" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">混亂</label></td>
+					<td>
+						<select size="2" name="q32" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">憂鬱</label></td>
+					<td>
+						<select size="2" name="q32" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q32" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q33" method="get">
+					<th>13</th>
+					<td><label for="typeE">單調乏味</label></td>
+					<td>
+						<select size="2" name="q33" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">自滿</label></td>
+					<td>
+						<select size="2" name="q33" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">膚淺</label></td>
+					<td>
+						<select size="2" name="q33" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">消極</label></td>
+					<td>
+						<select size="2" name="q33" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q33" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q34" method="get">
+					<th>14</th>
+					<td><label for="typeE">愛發牢騷</label></td>
+					<td>
+						<select size="2" name="q34" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">反對</label></td>
+					<td>
+						<select size="2" name="q34" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">散漫</label></td>
+					<td>
+						<select size="2" name="q34" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">愛挑剔</label></td>
+					<td>
+						<select size="2" name="q34" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q34" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q35" method="get">
+					<th>15</th>
+					<td><label for="typeE">安逸</label></td>
+					<td>
+						<select size="2" name="q35" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">露骨</label></td>
+					<td>
+						<select size="2" name="q35" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">容易發怒</label></td>
+					<td>
+						<select size="2" name="q35" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">孤獨</label></td>
+					<td>
+						<select size="2" name="q35" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q35" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q36" method="get">
+					<th>16</th>
+					<td><label for="typeE">與人疏離</label></td>
+					<td>
+						<select size="2" name="q36" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">固執</label></td>
+					<td>
+						<select size="2" name="q36" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">中途打斷</label></td>
+					<td>
+						<select size="2" name="q36" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">不滿</label></td>
+					<td>
+						<select size="2" name="q36" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q36" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q37" method="get">
+					<th>17</th>
+					<td><label for="typeE">懼怕</label></td>
+					<td>
+						<select size="2" name="q37" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">輕率</label></td>
+					<td>
+						<select size="2" name="q37" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">沒有規律</label></td>
+					<td>
+						<select size="2" name="q37" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">不饒恕</label></td>
+					<td>
+						<select size="2" name="q37" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q37" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q38" method="get">
+					<th>18</th>
+					<td><label for="typeE">受壓制</label></td>
+					<td>
+						<select size="2" name="q38" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">急躁</label></td>
+					<td>
+						<select size="2" name="q38" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">無一貫性</label></td>
+					<td>
+						<select size="2" name="q38" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">多疑</label></td>
+					<td>
+						<select size="2" name="q38" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q38" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q39" method="get">
+					<th>19</th>
+					<td><label for="typeE">擔憂</label></td>
+					<td>
+						<select size="2" name="q39" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">操縱權勢</label></td>
+					<td>
+						<select size="2" name="q39" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">放任</label></td>
+					<td>
+						<select size="2" name="q39" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">黑暗</label></td>
+					<td>
+						<select size="2" name="q39" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q39" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+			<tr>
+				<form id="q40" method="get">
+					<th>20</th>
+					<td><label for="typeE">猶豫不決</label></td>
+					<td>
+						<select size="2" name="q40" id="typeE" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeF">不露情感</label></td>
+					<td>
+						<select size="2" name="q40" id="typeF" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeG">吵雜</label></td>
+					<td>
+						<select size="2" name="q40" id="typeG" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td><label for="typeH">沒有自信</label></td>
+					<td>
+						<select size="2" name="q40" id="typeH" onChange="checkSelection(this)">
+							<option value="2">非常像我</option>
+							<option value="1">有點像我</option>
+
+						</select>
+					</td>
+					<td>
+						<input type="text" name="q40" id="checkList" size="2" maxlength="2" value="" readonly="readonly" />
+					</td>
+				</form>
+			</tr>
+		</table>
+		<h1>3.發現性格</h1>
+		<p>在這十六項性格中，每個人都屬於其中一項。(全部四十題都完成才能計算出結果)</p>
+		<table>
+			<form id="charType" method="get">
+				<tr>
+					<th colspan="3">感性的</th>
+					<th colspan="3">外向型</th>
+					<th colspan="3">意志強</th>
+				</tr>
+				<tr>
+					<th rowspan="9">看<br />重<br />關<br />係</th>
+					<td><input type="text" id="AG" value="純粹感化型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td>←</td>
+					<td><input type="text" id="AGBF" value="感化主導型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<th rowspan="4"></th>
+					<td><input type="text" id="BFAG" value="主導感化型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td>→</td>
+					<td><input type="text" id="BF" value="純粹主導型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<th rowspan="9">看<br />重<br />事<br />情</th>
+				</tr>
+				<tr>
+					<td>↑</td>
+					<td>↖</td>
+					<td>↑</td>
+					<td>↑</td>
+					<td>↗</td>
+					<td>↑</td>
+				</tr>
+				<tr>
+					<td><input type="text" id="AGDE" value="感化安定型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td>←</td>
+					<td><input type="text" id="AGCH" value="感化慎重型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" id="BFDE" value="主導安定型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td>→</td>
+					<td><input type="text" id="BFCH" value="主導慎重型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<th>沒有系統的</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<th>有系統的</th>
+				</tr>
+				<tr>
+					<th colspan="7"></th>
+				</tr>
+				<tr>
+					<th>非目標導向</th>
+					<td></td>
+					<td></td>
+					<th rowspan="4"></th>
+					<td></td>
+					<td></td>
+					<th>目標導向</th>
+				</tr>
+				<tr>
+					<td><input type="text" id="DEAG" value="安定感化型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td>←</td>
+					<td><input type="text" id="DEBF" value="安定主導型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" id="CHAG" value="慎重感化型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td>→</td>
+					<td><input type="text" id="CHBF" value="慎重主導型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>↓</td>
+					<td>↙</td>
+					<td>↓</td>
+					<td>↓</td>
+					<td>↘</td>
+					<td>↓</td>
+				</tr>
+				<tr>
+					<td><input type="text" id="DE" value="純粹安定型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td>←</td>
+					<td><input type="text" id="DECH" value="安定慎重型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" id="CHDE" value="慎重安定型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+					<td>→</td>
+					<td><input type="text" id="CH" value="純粹慎重型" size="8" maxlength="8" disabled="disabled" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<th colspan="3">非感性的</th>
+					<th colspan="3">內向型</th>
+					<th colspan="3">藝術的</th>
+				</tr>
+			</form>
+		</table>
+		<p>觀察惟有屬於你獨特的性格特性。(全部四十題都完成才能計算出結果)</p>
+		<table>
+			<form id="prosAndCons" method="get">
+				<tr>
+					<th colspan="5">感化型</th>
+					<th colspan="4">主導型</th>
+					<th colspan="4">慎重型</th>
+					<th colspan="4">安定型</th>
+				</tr>
+				<tr>
+					<th></th>
+					<td><input type="text" name="AG" value="純粹感化型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="AGBF" value="感化主導型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="AGCH" value="感化慎重型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="AGDE" value="感化安定型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="BF" value="純粹主導型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="BFAG" value="主導感化型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="BFCH" value="主導慎重型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="BFDE" value="主導安定型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="CH" value="純粹慎重型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="CHAG" value="慎重感化型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="CHBF" value="慎重主導型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="CHDE" value="慎重安定型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="DE" value="純粹安定型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="DEAG" value="安定感化型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="DEBF" value="安定主導型" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="DECH" value="安定慎重型" disabled="disabled" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<th>優<br />點</th>
+					<td>
+						<textarea name="AG" class="prosInfo" disabled="disabled" readonly="readonly">
+熱情又開朗
+
+人際社交型
+
+同情和憐憫
+
+誠實又單純
+
+熱心
+
+冒險心強
+
+喜歡有趣事物
+
+感性敏銳
+
+朋友多
+
+喜歡人群
+
+樂觀
+
+說話有技巧
+
+有幽默感</textarea>
+					</td>
+					<td>
+						<textarea name="AGBF" class="prosInfo" disabled="disabled" readonly="readonly">
+非常關心人
+
+有果斷力
+
+有組織力
+
+人際關係寬廣
+
+領導型(善於統合人事)
+
+有趣
+
+很會做事
+
+給人好印象
+
+常常稱讚別人</textarea>
+					</td>
+					<td>
+						<textarea name="AGCH" class="prosInfo" disabled="disabled" readonly="readonly">
+富有同情心
+
+可以與人共事
+
+做事按部就班
+
+看重人的關係
+
+多采多姿
+
+印象性的
+
+感情豐富</textarea>
+					</td>
+					<td>
+						<textarea name="AGDE" class="prosInfo" disabled="disabled" readonly="readonly">
+溫和
+
+優雅
+
+樂觀
+
+有幽默感
+
+帶給人快樂
+
+擅於助人
+
+不會徬徨
+
+交友甚多
+
+誠實單純</textarea>
+					</td>
+					<td>
+						<textarea name="BF" class="prosInfo" disabled="disabled" readonly="readonly">
+會發揮領導力
+
+生動又活潑
+
+意志強而堅定
+
+不會輕易沮喪
+
+動作快速
+
+實際
+
+獨立
+
+有果斷力
+
+目標明確
+
+能勝過困難
+
+對成功有確信
+
+善於解決問題</textarea>
+					</td>
+					<td>
+						<textarea name="BFAG" class="prosInfo" disabled="disabled" readonly="readonly">
+生產型
+
+實際
+
+合理
+
+目標明確
+
+給對方好感
+
+與人相處融洽
+
+能激勵人
+
+在困境中反而可以產生力量
+
+容易交朋友
+
+快速成為領袖
+
+面對新的冒險</textarea>
+					</td>
+					<td>
+						<textarea name="BFCH" class="prosInfo" disabled="disabled" readonly="readonly">
+具有目標導向
+
+小心翼翼
+
+行動家
+
+優越的分析力
+
+快速分辨事理
+
+善於處理事情
+
+能記得小事
+
+有可能成為最高的領導者
+
+受人尊敬
+
+能夠持續做事</textarea>
+					</td>
+					<td>
+						<textarea name="BFDE" class="prosInfo" disabled="disabled" readonly="readonly">
+動作快速
+
+活躍
+
+熱情
+
+沉著
+
+鎮定又膽大
+
+慎重又冷靜
+
+計畫細膩深入
+
+有組織力
+
+有明確目標和細部推進力
+
+不過度責難人
+
+助人發揮潛能
+
+可以與人共事</textarea>
+					</td>
+					<td>
+						<textarea name="CH" class="prosInfo" disabled="disabled" readonly="readonly">
+思慮縝密
+
+善於分析
+
+具有目標意識
+
+有天賦
+
+會犧牲自己
+
+完美主義
+
+慎重、真摯
+
+信實、可信任
+
+注意細節
+
+正確判斷問題
+
+對人敏感
+
+穩健又徹底</textarea>
+					</td>
+					<td>
+						<textarea name="CHAG" class="prosInfo" disabled="disabled" readonly="readonly">
+能找出未被告知的事實
+
+正確使用細部的事項
+
+傳達詳細資訊
+
+感到很幸福
+
+易受感動
+
+自我犧牲
+
+善於領導
+
+豐富的藝術性</textarea>
+					</td>
+					<td>
+						<textarea name="CHBF" class="prosInfo" disabled="disabled" readonly="readonly">
+有意志力
+
+有推動力
+
+有分析能力
+
+追求完美
+
+有強烈領導力
+
+很自然
+
+有效率
+
+有條不紊
+
+準備徹底
+
+常常支持人
+
+善於行政管理</textarea>
+					</td>
+					<td>
+						<textarea name="CHDE" class="prosInfo" disabled="disabled" readonly="readonly">
+具分析力
+
+有組織及效率
+
+善於研究調查
+
+才能很多
+
+個性很好
+
+小心翼翼
+
+精確
+
+依良心行動
+
+敏感
+
+很會計算</textarea>
+					</td>
+					<td>
+						<textarea name="DE" class="prosInfo" disabled="disabled" readonly="readonly">
+有彈性
+
+平穩
+
+能克制情感
+
+有接納性
+
+有耐性及包容
+
+公正無私
+
+有調停能力
+
+寬大
+
+不輕易動搖
+
+朋友多
+
+人際關係圓融</textarea>
+					</td>
+					<td>
+						<textarea name="DEAG" class="prosInfo" disabled="disabled" readonly="readonly">
+和藹可親
+
+愉快
+
+善於協調
+
+思慮很深
+
+看重人
+
+圓融
+
+值得信任
+
+風趣
+
+有幽默感
+
+受寵愛
+
+溫和
+
+信實</textarea>
+					</td>
+					<td>
+						<textarea name="DEBF" class="prosInfo" disabled="disabled" readonly="readonly">
+人際關係圓融
+
+懂得傾聽
+
+溫和
+
+不具威脅感
+
+實際
+
+有才能
+
+能擔任負責人
+
+有調停能力
+
+安靜</textarea>
+					</td>
+					<td>
+						<textarea name="DECH" class="prosInfo" disabled="disabled" readonly="readonly">
+溫和
+
+有品味
+
+很少發怒
+
+不會懷恨在心
+
+採取適當行為
+
+值得信任
+
+明確
+
+慷慨給予
+
+俐落
+
+有組織力
+
+有耐性</textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>缺<br />點</th>
+					<td>
+						<textarea name="AG" class="consInfo" disabled="disabled" readonly="readonly">
+意志薄弱
+
+持續力不足
+
+注意力不集中
+
+輕率判斷就採取行動
+
+情緒起伏很大
+
+不注意細節
+
+散漫且多變
+
+放任且易怒</textarea>
+					</td>
+					<td>
+						<textarea name="AGBF" class="consInfo" disabled="disabled" readonly="readonly">
+話多而易犯錯
+
+獨占談話時間
+
+為小事發怒
+
+毀謗人
+
+為自己合理化
+
+有自誇的傾向</textarea>
+					</td>
+					<td>
+						<textarea name="AGCH" class="consInfo" disabled="disabled" readonly="readonly">
+情緒起伏很大
+
+有完美主義，有時會批判人
+
+自誇
+
+有時因不安及懼怕，而無法發揮潛能
+
+因憤怒而感到無力</textarea>
+					</td>
+					<td>
+						<textarea name="AGDE" class="consInfo" disabled="disabled" readonly="readonly">
+受環境影響
+
+企圖心不足
+
+缺乏自制力
+
+閒談多過做事
+
+思想太過簡單</textarea>
+					</td>
+					<td>
+						<textarea name="BF" class="consInfo" disabled="disabled" readonly="readonly">
+情緒較軟弱
+
+缺乏同情憐憫
+
+藝術感不足
+
+厭煩細瑣之事
+
+看似有壓迫性
+
+傾向於利用人
+
+機會主義者</textarea>
+					</td>
+					<td>
+						<textarea name="BFAG" class="consInfo" disabled="disabled" readonly="readonly">
+感情瞬間爆發
+
+虛張聲勢
+
+懷恨在心
+
+含怒且會爆發
+
+懷有惡意
+
+性急
+
+嚴厲批判
+
+殘酷和嘲弄</textarea>
+					</td>
+					<td>
+						<textarea name="BFCH" class="consInfo" disabled="disabled" readonly="readonly">
+獨裁者的傾向
+
+受到他人憎惡
+
+直接說出想法
+
+喜愛爭論
+
+過於世故
+
+憎惡和怨恨
+
+不易滿足</textarea>
+					</td>
+					<td>
+						<textarea name="BFDE" class="consInfo" disabled="disabled" readonly="readonly">
+懷恨或有惡意
+
+頑固又固執
+
+受壓制時，潛力無法發揮
+
+得罪人時只想補償而不道歉
+
+懂得巧妙掩飾</textarea>
+					</td>
+					<td>
+						<textarea name="CH" class="consInfo" disabled="disabled" readonly="readonly">
+心情時常改變
+
+不易交朋友
+
+不能放手去做
+
+懷疑、疑心
+
+會自我隔離
+
+愛挑剔
+
+不虛心坦懷
+
+易受憂鬱所苦
+
+有退縮傾向
+
+消極</textarea>
+					</td>
+					<td>
+						<textarea name="CHAG" class="consInfo" disabled="disabled" readonly="readonly">
+沒有自信
+
+批判
+
+陷入自憐
+
+嚴格挖苦人
+
+頑固
+
+不合作
+
+恐懼與不安
+
+有時無法了解他人的才能
+
+易受憂鬱所苦</textarea>
+					</td>
+					<td>
+						<textarea name="CHBF" class="consInfo" disabled="disabled" readonly="readonly">
+無法滿足
+
+陷入憂鬱
+
+自我膨脹
+
+憎恨
+
+憤怒和報復
+
+消極
+
+攻擊他人缺點
+
+有時無法與人相處</textarea>
+					</td>
+					<td>
+						<textarea name="CHDE" class="consInfo" disabled="disabled" readonly="readonly">
+失望沮喪
+
+消極
+
+恐懼與不安
+
+自我形象差
+
+不能降卑自己
+
+因過度負責他人的事而枯竭
+
+情感起伏很大
+
+頑固
+
+不易妥協</textarea>
+					</td>
+					<td>
+						<textarea name="DE" class="consInfo" disabled="disabled" readonly="readonly">
+被強迫的傾向
+
+安逸
+
+單調乏味
+
+沒有熱情
+
+沒有果斷力
+
+小心膽怯
+
+因等待而荒廢人生
+
+想成為旁觀者
+
+沒有確信
+
+猶豫不決</textarea>
+					</td>
+					<td>
+						<textarea name="DEAG" class="consInfo" disabled="disabled" readonly="readonly">
+享受孤獨
+
+傾向遊手好閒
+
+充滿懼怕
+
+小心膽怯
+
+有時有自我毀滅式的不安
+
+一成不變
+
+有時無法充分開啟潛能
+
+可能流失機會</textarea>
+					</td>
+					<td>
+						<textarea name="DEBF" class="consInfo" disabled="disabled" readonly="readonly">
+不會脫離體制
+
+充滿恐懼
+
+製造固執
+
+難以協調
+
+用沉默表達隱藏之怒和固執
+
+有利己的傾向
+
+有時很被動
+
+緊急情況時會利用謊言</textarea>
+					</td>
+					<td>
+						<textarea name="DECH" class="consInfo" disabled="disabled" readonly="readonly">
+恐懼
+
+有利己的傾向
+
+生活方式消極
+
+批判
+
+缺乏健全的自我形象
+
+有時會過度的持有負擔感
+
+有時會疏忽必要的懲戒</textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>人物</th>
+					<td><input type="text" name="AG" value="彼得" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="AGBF" value="彼得" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="AGCH" value="大衛" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="AGDE" value="亞波羅" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="BF" value="保羅" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="BFAG" value="雅各" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="BFCH" value="保羅" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="BFDE" value="提多" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="CH" value="使徒約翰" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="CHAG" value="施洗約翰" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="CHBF" value="路加" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="CHDE" value="使徒約翰" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="DE" value="亞伯拉罕" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="DEAG" value="提摩太" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="DEBF" value="亞伯拉罕" disabled="disabled" readonly="readonly" /></td>
+					<td><input type="text" name="DECH" value="巴拿巴" disabled="disabled" readonly="readonly" /></td>
+				</tr>
+			</form>
+		</table>
+	</body>
+</html>
